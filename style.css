@@ -6,10 +6,11 @@
   --font: 'Press Start 2P', ui-monospace, Menlo, Consolas, monospace;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+/* touch gesture / zoom rules live in touch-zoom-guard/touch-zoom-guard.css */
 html, body {
-  margin: 0; height: 100%; overflow: hidden; background: #04101c; color: var(--ink);
-  font-family: var(--font); touch-action: none; user-select: none; -webkit-user-select: none;
+  margin: 0; height: 100%; overflow: hidden; background: #04101c; color: var(--ink); font-family: var(--font);
 }
+#stage, #touch, #joy-zone, #joy-base, #joy-knob { touch-action: none; }
 #stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
 #game { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
 
@@ -47,6 +48,7 @@ html, body {
   width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 24px); overflow-y: auto;
   background: var(--panel); border: 3px solid var(--edge); box-shadow: 0 0 0 3px #000, 0 12px 40px rgba(0,0,0,.6);
   padding: 20px 18px; text-align: center; image-rendering: pixelated;
+  -webkit-overflow-scrolling: touch;
 }
 .hidden { display: none !important; }
 h1 { margin: 4px 0 8px; font-size: clamp(22px, 6vw, 40px); line-height: 1.15; color: var(--gold); text-shadow: 3px 3px 0 #6a3008, 6px 6px 0 #000; letter-spacing: 2px; }
@@ -75,6 +77,10 @@ button.small { font-size: 8px; padding: 6px 10px; }
 .help p { margin: 4px 0; font-size: 8px; color: #b8d8ea; }
 .help b { color: var(--gold); font-weight: normal; }
 #rotate { display: none; }
+#zoom-hint {
+  position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 40;
+  background: var(--panel); border: 2px solid var(--gold); padding: 8px 12px; font-size: 8px; white-space: nowrap;
+}
 @media (pointer: coarse) and (orientation: portrait) {
   body.playing #rotate {
     display: block; position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 30;

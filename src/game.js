@@ -561,6 +561,7 @@
     G.warn = 0;
     G.t = 0;
     I.reset();
+    TouchZoomGuard.enterFullscreen('landscape');
     setState('play');
     A.play('sonar');
   };
@@ -855,6 +856,12 @@
   }
 
   G.init = function () {
+    // Stop mobile/tablet browsers zooming on rapid taps; if a zoom still slips
+    // through, pause until the player pinches back out.
+    TouchZoomGuard.init({
+      allowSelector: '[data-touch-allow]',
+      onZoomChange: (zoomed) => { if (zoomed && G.state === 'play') { setState('pause'); I.reset(); } },
+    });
     cv = document.getElementById('game');
     cv.width = W;
     cv.height = H;

@@ -41,6 +41,12 @@ All art is original and generated in code by `src/sprites.js`. Each sprite is a 
 (cylinder / sphere / vertical lighting), ordered dithering, rim light and a dark outline, recoloured per stage.
 Open `sprites.html` to see every sprite.
 
+## Mobile zoom fix
+
+Rapid tapping on touch browsers used to zoom the page. The fix is the self-contained
+[`touch-zoom-guard/`](touch-zoom-guard/README.md) package, which is reusable in any touch game
+(see [`AGENT_BRIEF.md`](touch-zoom-guard/AGENT_BRIEF.md)).
+
 ## Code
 
 - `src/util.js`: math, seeded RNG, noise, 3×5 pixel font
@@ -50,3 +56,4 @@ Open `sprites.html` to see every sprite.
 - `src/input.js`: virtual joystick, fire buttons, keyboard
 - `src/audio.js`: WebAudio sound effects
 - `src/game.js`: game loop, camera, player, enemies, bosses, HUD, menus
+- `touch-zoom-guard/`: drop-in fix for mobile tap-to-zoom (shared with other games)
