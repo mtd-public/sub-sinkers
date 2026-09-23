@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sub Sinkers Sprites</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { margin: 0; padding: 16px; background: #1a2230; color: #cde; font: 13px monospace; }
+  h2 { margin: 18px 0 6px; font-size: 13px; color: #8cf; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+  canvas { image-rendering: pixelated; background: #2e4a66; }
+</style>
+</head>
+<body>
+<div id="out"></div>
+<script src="src/util.js"></script>
+<script src="src/sprites.js"></script>
+<script src="src/levels.js"></script>
+<script>
+  const out = document.getElementById('out');
+  const S = 3;
+  function row(title, list) {
+    const h = document.createElement('h2'); h.textContent = title; out.appendChild(h);
+    const r = document.createElement('div'); r.className = 'row'; out.appendChild(r);
+    list.forEach((s) => {
+      const c = document.createElement('canvas');
+      c.width = s.w * S; c.height = s.h * S;
+      const x = c.getContext('2d'); x.imageSmoothingEnabled = false;
+      x.drawImage(s.c, 0, 0, c.width, c.height);
+      r.appendChild(c);
+    });
+  }
+  const C = SS.commonSprites();
+  row('Player', C.player);
+  row('Weapons & pickups', [C.torp, C.missile, C.etorp, C.orb, C.orbC, C.charge, C.bomb, C.repair, C.power, C.barrel, ...C.bubbles, ...C.icicles]);
+  row('Explosions', C.exM);
+  row('Underwater explosions', C.wexM);
+  row('Geyser', C.geyL);
+  SS.LEVELS.forEach((L, i) => {
+    const T = SS.themeSprites(L.theme);
+    row('Level ' + (i + 1) + ' - ' + L.name, [...T.esub, ...T.drone, ...T.mine, T.boat, ...T.heli, T.tbase, ...T.crab, ...T.jelly]);
+    row('Level ' + (i + 1) + ' boss & scenery', [T.boss[0], ...T.clouds, ...T.corals, ...T.crystals, ...T.rocks, T.vent, ...T.glowPlants]);
+  });
+</script>
+</body>
+</html>

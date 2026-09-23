@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sub Sinkers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#04101c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="384" height="216"></canvas>
+</div>
+
+<!-- touch controls -->
+<div id="touch">
+  <div id="joy-zone"></div>
+  <div id="joy-base"></div>
+  <div id="joy-knob"></div>
+  <button id="btn-up" class="fire" aria-label="Fire missile upward"><span>&#9650;</span><small>MISSILE</small></button>
+  <button id="btn-fwd" class="fire" aria-label="Fire torpedo forward"><span>&#9654;</span><small>TORPEDO</small></button>
+</div>
+<button id="btn-pause" aria-label="Pause">II</button>
+
+<!-- menus -->
+<div id="title" class="panel hidden">
+  <h1>SUB<br>SINKERS</h1>
+  <p class="tag">DIVE DEEP. SINK EVERYTHING.</p>
+  <div id="levels"></div>
+  <p id="best"></p>
+  <div class="help">
+    <p><b>MOVE</b> drag the left side of the screen · arrows / WASD</p>
+    <p><b>TORPEDO</b> &#9654; button · Space / J / Z</p>
+    <p><b>MISSILE</b> &#9650; button · K / X / Shift</p>
+    <p>Surface to dodge, dive to hide. The screen only scrolls forward.</p>
+  </div>
+  <button id="mute" class="small">SOUND: ON</button>
+</div>
+<div id="pause" class="panel hidden">
+  <h2>PAUSED</h2>
+  <button id="resume">RESUME</button>
+  <button id="restart">RESTART STAGE</button>
+  <button id="quit">QUIT TO MENU</button>
+</div>
+<div id="over" class="panel hidden">
+  <h2 class="bad">HULL BREACHED</h2>
+  <p id="over-stats"></p>
+  <button id="retry">RETRY STAGE</button>
+  <button id="over-menu">MENU</button>
+</div>
+<div id="clear" class="panel hidden">
+  <h2>STAGE CLEAR!</h2>
+  <p id="clear-stats"></p>
+  <button id="clear-next">NEXT</button>
+  <button id="clear-menu">MENU</button>
+</div>
+<div id="win" class="panel hidden">
+  <h2>THE TRENCH IS YOURS</h2>
+  <p>All four zones cleared, from the sunlit shallows to the hadal ice.</p>
+  <p id="win-stats"></p>
+  <button id="win-menu">MENU</button>
+</div>
+<div id="rotate">Rotate your device to landscape</div>
+
+<script src="src/util.js"></script>
+<script src="src/sprites.js"></script>
+<script src="src/levels.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/input.js"></script>
+<script src="src/world.js"></script>
+<script src="src/game.js"></script>
+<script>SS.Game.init();</script>
+</body>
+</html>
